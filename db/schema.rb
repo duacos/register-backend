@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_152003) do
+ActiveRecord::Schema.define(version: 2020_02_17_162553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "desarrollos", force: :cascade do |t|
+    t.string "politicas"
+    t.string "entornos"
+    t.string "funcionalidad"
+    t.string "aceptacion"
+    t.bigint "empresa_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["empresa_id"], name: "index_desarrollos_on_empresa_id"
+  end
+
   create_table "empresas", force: :cascade do |t|
-    t.string "nombre"
-    t.string "descripcion"
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -31,5 +42,21 @@ ActiveRecord::Schema.define(version: 2020_02_10_152003) do
     t.index ["empresa_id"], name: "index_politicas_on_empresa_id"
   end
 
+  create_table "teles", force: :cascade do |t|
+    t.string "controles_red"
+    t.string "mecanismos_seg"
+    t.string "segregacion_redes"
+    t.string "procedimientos"
+    t.string "intercambio"
+    t.string "mensajeria"
+    t.string "confidencialidad"
+    t.bigint "empresa_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["empresa_id"], name: "index_teles_on_empresa_id"
+  end
+
+  add_foreign_key "desarrollos", "empresas"
   add_foreign_key "politicas", "empresas"
+  add_foreign_key "teles", "empresas"
 end

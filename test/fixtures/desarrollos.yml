@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  politicas: MyString
+  entornos: MyString
+  funcionalidad: MyString
+  aceptacion: MyString
+
+two:
+  politicas: MyString
+  entornos: MyString
+  funcionalidad: MyString
+  aceptacion: MyString
